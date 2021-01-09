@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
+  "name": "renovate-config-validator",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "Validate Renovate config in GitHub Actions",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,17 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/rinchsan/renovate-config-validator.git"
   },
-  "keywords": [
-    "actions",
-    "node",
-    "setup"
-  ],
-  "author": "",
+  "author": "rinchsan",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/glob": "^0.1.1",
+    "@actions/io": "^1.0.2"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",

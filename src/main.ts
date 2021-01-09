@@ -1,16 +1,32 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import * as glob from '@actions/glob'
+import * as io from '@actions/io'
+import * as exec from '@actions/exec'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const pattern = core.getInput('pattern') || '*.json'
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const globber = await glob.create(pattern)
+    const renovateJson = 'renovate.json'
+    for await (const file of globber.globGenerator()) {
+      core.info(`Validating ${file} ...`)
+      if (!file.includes(renovateJson)) {
+        await io.cp(file, renovateJson)
+      }
+      const code = await exec.exec('npx', [
+        '--package',
+        'renovate',
+        '-c',
+        `'renovate-config-validator'`
+      ])
+      if (code !== 0) {
+        core.setFailed(`${file} not valid`)
+      }
+      if (!file.includes(renovateJson)) {
+        await io.rmRF(renovateJson)
+      }
+    }
   } catch (error) {
     core.setFailed(error.message)
   }
