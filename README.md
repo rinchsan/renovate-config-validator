@@ -4,7 +4,7 @@
 ![](https://img.shields.io/github/release/rinchsan/renovate-config-validator.svg?colorB=7E7E7E)
 [![](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
-Validate Renovate config in GitHub Actions
+:white_check_mark: Validate Renovate config in GitHub Actions
 
 ## Example
 
