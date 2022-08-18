@@ -20,7 +20,7 @@
   "author": "rinchsan",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.8.2",
+    "@actions/core": "1.9.1",
     "@actions/exec": "1.1.1",
     "@actions/glob": "0.3.0",
     "@actions/io": "1.1.2"
