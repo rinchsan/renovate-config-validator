@@ -25,9 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Validate
-        uses: rinchsan/renovate-config-validator@v0.0.0
+        uses: rinchsan/renovate-config-validator@main
         with:
           pattern: '*.json' # Regular expression for filename to validate, default to *.json
 ```
